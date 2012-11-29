@@ -3,4 +3,4 @@ Omap4460的ROM读取SD卡上名为“MLO”的镜像文件。
 
 用法：
 
-python mkhead.py main.bin 0x40303080
+python mkhead.py main.bin 0x40303080  #这将设置main的加载地址为0x40303080
