@@ -1,6 +1,7 @@
-Omap4460的ROM读取SD卡上名为“MLO”的镜像文件。
-这个镜像文件必须包含一个CH头和一个GP头。这个工具就是生成一个默认的CH头。命令行将指定加载地址和要添加头的文件。
+Omap4460's internal ROM will read a file "MLO" in SD card.
+This is called memory booting. When boot from a GP-device, the img need a GP head and a CH head.
+This tool will do this for bare bin file.
 
-用法：
+Usage：
 
-python mkhead.py main.bin 0x40303080  #这将设置main的加载地址为0x40303080
+python mkhead.py main.bin 0x40303080  #load main.bin at 0x40303080
