@@ -1,0 +1,2 @@
+select the source path,select the destiny path,and run.
+you can use the example file to test it
