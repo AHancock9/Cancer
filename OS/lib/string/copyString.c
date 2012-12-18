@@ -8,7 +8,7 @@
 			Just include the strcpy function
 		@detail 
 			Just include the strcpy function
-		@data 2012.12.17
+		@date 2012.12.17
 		@author ZhangYan
 	@end
 */

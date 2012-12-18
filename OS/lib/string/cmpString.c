@@ -6,7 +6,7 @@
 			Just include the strcmp function
 		@detail 
 			Just include the strcmp function
-		@data 2012.12.17
+		@date 2012.12.17
 		@author ZhangYan
 	@end
 */
