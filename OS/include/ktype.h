@@ -29,6 +29,6 @@ typedef unsigned long long u64;
 typedef volatile unsigned char vu8;
 typedef volatile unsigned short vu16;
 typedef volatile unsigned int vu32;
-typedef s8 bool;
+typedef s32 bool;
 typedef u8 byte;
 #endif /*_KTYPE_H_*/
