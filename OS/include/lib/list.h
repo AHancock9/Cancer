@@ -1,7 +1,7 @@
 #ifndef _LIST_H_
 #define _LIST_H_
 
-#include "kernel.h"
+#include "Cancer.h"
 
 /*
 	@begin
@@ -15,24 +15,26 @@
 */
 
 /*the structures we need*/
-struct ListHead {
+struct ListHead 
+{
 	struct ListHead * pNext, *pPrev;
 };
 
 /*the define operations we need*/
-#define getListEntry(ptr, type, member) \
+#define list_head_entry(ptr, type, member) \
 	container_of(ptr, type, member)
 
 #define list_for_each(pos, head) \
 	for (pos = (head)->pNext; pos != (head);pos = pos->pNext)
 
 #define list_for_each_entry(pos, head, member)				\
-	for (pos = getListEntry((head)->pNext, typeof(*pos), member);	\
+	for (pos = list_head_entry((head)->pNext, typeof(*pos), member);	\
 	     &pos->member != (head); 	\
-	     pos = getListEntry(pos->member.pNext, typeof(*pos), member))
+	     pos = list_head_entry(pos->member.pNext, typeof(*pos), member))
 
 /*the inline operations we need*/
-static inline void initListHead(struct ListHead * ptr){
+static inline void initListHead(struct ListHead * ptr)
+{
 	ptr->pNext = ptr;
 	ptr->pPrev = ptr;
 }

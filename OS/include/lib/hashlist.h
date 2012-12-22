@@ -11,13 +11,15 @@
 			This file contains the hash list structure and the operations we need
 	@end
 */
-
+#include "Cancer.h"
 /*the structures we need */
-struct HashListHead {
+struct HashListHead 
+{
 	struct HashListNode *pFirst;
 };
 
-struct HashListNode {
+struct HashListNode 
+{
 	struct HashListNode *pNext, **pPrevn;
 };
 
@@ -35,7 +37,8 @@ struct HashListNode {
 		 
 /*inline operations we need*/	
 
-static inline void initHashListHead(struct HashListHead *head){
+static inline void initHashListHead(struct HashListHead *head)
+{
 	head->pFirst = NULL;
 }	 
 static inline void initHashListNode(struct HashListNode *node)
@@ -68,7 +71,8 @@ static inline void deleteHashNode(struct HashListNode *node)
 	delete_hash_node(node);
 	initHashListNode(node);
 }
-static inline void addHashNode(struct HashListNode *node, struct HashListHead *head)
+static inline void addHashNode(struct HashListNode *node, 
+					struct HashListHead *head)
 {
 	struct HashListNode *pFirst = head->pFirst;
 	node->pNext = pFirst;
@@ -78,4 +82,23 @@ static inline void addHashNode(struct HashListNode *node, struct HashListHead *h
 	node->pPrevn = &head->pFirst;
 }
 
+/* next must be != NULL */
+static inline void addHashNodeBefore(struct HashListNode *new,
+					struct HashListNode *next)
+{
+	new->pPrevn = next->pPrevn;
+	new->pNext = next;
+	next->pPrevn = &new->pNext;
+	*(new->pPrevn) = new;
+}
+
+static inline void addHashNodeAfter(struct HashListNode *new,
+					struct HashListNode *next)
+{
+	next->pNext = new->pNext;
+	new->pNext = next;
+	next->pPrevn = &new->pNext;
+	if(next->pNext)
+		next->pNext->pPrevn  = &next->pNext;
+}
 #endif /*_HASHLIST_H_*/

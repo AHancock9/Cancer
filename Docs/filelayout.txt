@@ -1,0 +1,25 @@
+	.h file layout
+			#ifnedf _XXX_H_
+			#define _XXX_H_
+				/*copyright (C)*/
+				/*cdoc declaration*/
+				includes
+				typedef
+				/*defines*/
+				....
+				/*structrues*/
+				.....
+				/*inline*/
+				....
+				/*extern*/
+				global var
+				extern fun
+			#endif /*_XXX_H_*/
+	.c file layout
+			/*copyright (C)*/
+			/*cdoc declaration*/
+			includes
+			global var
+			static var
+			static fun
+			externs fun

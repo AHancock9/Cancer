@@ -24,7 +24,7 @@
 	(void) (&_max1 == &_max2);		\
 	_max1 > _max2 ? _max1 : _max2; })
 // offset_of
-#define offset_of(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
+#define offset_of(TYPE, MEMBER) ((u32) &((TYPE *)0)->MEMBER)
 //container_of
 #define container_of(ptr, type, member) ({			\
 	const typeof( ((type *)0)->member ) *__mptr = (ptr);	\

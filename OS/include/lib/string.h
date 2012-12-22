@@ -10,7 +10,8 @@
 		@author ZhangYan
 	@end
 */
-#include "ktype.h"
+#include "Cancer.h"
+
 extern string copyStringN(string dst, string src, u32 n);
 extern string catString(string src, string append);
 extern string copyString(string to, string from);
