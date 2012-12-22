@@ -9,9 +9,9 @@
 				....
 				/*structrues*/
 				.....
-				/*inline*/
+				/*inlines*/
 				....
-				/*extern*/
+				/*externs*/
 				global var
 				extern fun
 			#endif /*_XXX_H_*/
@@ -19,7 +19,10 @@
 			/*copyright (C)*/
 			/*cdoc declaration*/
 			includes
+			/*globals*/
 			global var
+			/*privates*/
 			static var
 			static fun
+			/*publics*/
 			externs fun
