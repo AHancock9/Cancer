@@ -26,3 +26,12 @@
 			static fun
 			/*publics*/
 			externs fun
+(1)All the variables annotations should be put in the end of the declaration
+eg.
+	int time;/*it is the time*/
+(2)For all annoations,we must use /**/ instead of // 
+	
+	
+	
+	
+	

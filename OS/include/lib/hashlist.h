@@ -1,27 +1,20 @@
 #ifndef _HASHLIST_H_
 #define _HASHLIST_H_
 
-/*
+/*******************************************************
+********************************************************
 	@begin
 		@type file
 		@date 2012.12.17
 		@author ZhangYan
 		@version 0.0.1
-		@brief 
-			This file contains the hash list structure and the operations we need
+		@brief
+			This file contains the hash list structure
+			and the operations we need
 	@end
-*/
+********************************************************
+********************************************************/
 #include "Cancer.h"
-/*the structures we need */
-struct HashListHead 
-{
-	struct HashListNode *pFirst;
-};
-
-struct HashListNode 
-{
-	struct HashListNode *pNext, **pPrevn;
-};
 
 /*the define operations we need */
 
@@ -29,18 +22,28 @@ struct HashListNode
 
 #define hlist_for_each(pos, head) \
 	for (pos = (head)->pFirst; pos; pos = pos->pNext)
-		 
+
 #define hlist_for_each_entry(tpos, pos, head, member)			 \
 	for (pos = (head)->pFirst;					 \
 	     pos &&	({ tpos = hlist_entry(pos, typeof(*tpos), member); 1;}); \
 	     pos = pos->pNext)
-		 
-/*inline operations we need*/	
+
+/*the structures we need */
+struct HashListHead
+{
+	struct HashListNode *pFirst;
+};
+struct HashListNode
+{
+	struct HashListNode *pNext, **pPrevn;
+};
+
+/*inline operations we need*/
 
 static inline void initHashListHead(struct HashListHead *head)
 {
 	head->pFirst = NULL;
-}	 
+}
 static inline void initHashListNode(struct HashListNode *node)
 {
 	node->pNext = NULL;
@@ -71,7 +74,7 @@ static inline void deleteHashNode(struct HashListNode *node)
 	delete_hash_node(node);
 	initHashListNode(node);
 }
-static inline void addHashNode(struct HashListNode *node, 
+static inline void addHashNode(struct HashListNode *node,
 					struct HashListHead *head)
 {
 	struct HashListNode *pFirst = head->pFirst;
@@ -95,10 +98,11 @@ static inline void addHashNodeBefore(struct HashListNode *new,
 static inline void addHashNodeAfter(struct HashListNode *new,
 					struct HashListNode *next)
 {
-	next->pNext = new->pNext;
-	new->pNext = next;
-	next->pPrevn = &new->pNext;
-	if(next->pNext)
-		next->pNext->pPrevn  = &next->pNext;
+	new->pNext = next->pNext;
+	next->pNext = new;
+	new->pPrevn = &next->pNext;
+	if(new->pNext)
+		new->pNext->pPrevn  = &next->pNext;
 }
+
 #endif /*_HASHLIST_H_*/
