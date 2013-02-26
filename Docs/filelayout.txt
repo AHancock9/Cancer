@@ -1,0 +1,37 @@
+	.h file layout
+			#ifnedf _XXX_H_
+			#define _XXX_H_
+				/*copyright (C)*/
+				/*cdoc declaration*/
+				includes
+				typedef
+				/*defines*/
+				....
+				/*structrues*/
+				.....
+				/*inlines*/
+				....
+				/*externs*/
+				global var
+				extern fun
+			#endif /*_XXX_H_*/
+	.c file layout
+			/*copyright (C)*/
+			/*cdoc declaration*/
+			includes
+			/*globals*/
+			global var
+			/*privates*/
+			static var
+			static fun
+			/*publics*/
+			externs fun
+(1)All the variables annotations should be put in the end of the declaration
+eg.
+	int time;/*it is the time*/
+(2)For all annoations,we must use /**/ instead of // 
+	
+	
+	
+	
+	
