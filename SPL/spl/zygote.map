@@ -1,0 +1,145 @@
+Archive member included because of file (symbol)
+
+cpu/libcpu.a(cpu.o)           cpu/start.o (s_init)
+cpu/libcpu.a(rom_hal.o)       cpu/libcpu.a(cpu.o) (omap_smc_rom)
+drivers/libdriver.a(ns16550.o)
+                              cpu/libcpu.a(cpu.o) (setup_console)
+drivers/libdriver.a(led.o)    cpu/libcpu.a(cpu.o) (init_gpio_led)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x40300000                . = 0x40300000
+                0x40300000                TEXT_BASE = .
+                0x40300000                . = ALIGN (0x4)
+
+.text           0x40300000      0x62c
+ cpu/start.o(.text)
+ .text          0x40300000       0xe0 cpu/start.o
+                0x40300000                _start
+                0x40300044                _end_vect
+                0x40300050                _bss_start
+                0x40300054                _bss_end
+ *(.text)
+ .text          0x403000e0      0x250 cpu/libcpu.a(cpu.o)
+                0x403000e0                cortex_a9_rev
+                0x403000e8                omap_revision
+                0x403001d8                s_init
+                0x403001f0                get_device_type
+                0x40300204                cpu_init
+ .text          0x40300330       0x20 cpu/libcpu.a(rom_hal.o)
+                0x40300330                omap_smc_rom
+ .text          0x40300350      0x128 drivers/libdriver.a(ns16550.o)
+                0x40300350                ns16550_init
+                0x403003bc                setup_console
+                0x403003f0                ns16550_putc
+                0x40300424                putc
+                0x4030042c                puts
+                0x40300454                ns16550_getc
+ .text          0x40300478      0x1b4 drivers/libdriver.a(led.o)
+                0x40300478                init_gpio_clk
+                0x403004b4                init_pad_control
+                0x403004e8                init_gpio_led
+                0x403005ac                led_on
+                0x403005ec                led_off
+
+.glue_7         0x4030062c        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x4030062c        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x4030062c        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x4030062c        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x4030062c        0x0
+ .iplt          0x00000000        0x0 cpu/start.o
+                0x4030062c                . = ALIGN (0x4)
+
+.rodata         0x4030062c        0xc
+ *(.rodata)
+ .rodata        0x4030062c        0xc cpu/libcpu.a(cpu.o)
+
+.rel.dyn        0x40300638        0x0
+ .rel.iplt      0x00000000        0x0 cpu/start.o
+                0x40300638                . = ALIGN (0x4)
+
+.data           0x40300638        0x0
+ *(.data)
+ .data          0x40300638        0x0 cpu/start.o
+ .data          0x40300638        0x0 cpu/libcpu.a(cpu.o)
+ .data          0x40300638        0x0 cpu/libcpu.a(rom_hal.o)
+ .data          0x40300638        0x0 drivers/libdriver.a(ns16550.o)
+ .data          0x40300638        0x0 drivers/libdriver.a(led.o)
+
+.igot.plt       0x40300638        0x0
+ .igot.plt      0x00000000        0x0 cpu/start.o
+                0x40300638                . = ALIGN (0x4)
+
+.got
+ *(.got)
+                0x40300638                . = ALIGN (0x4)
+                0x40300638                __bss_start = .
+
+.bss            0x40300638        0x0
+ *(.bss)
+ .bss           0x40300638        0x0 cpu/start.o
+ .bss           0x40300638        0x0 cpu/libcpu.a(cpu.o)
+ .bss           0x40300638        0x0 cpu/libcpu.a(rom_hal.o)
+ .bss           0x40300638        0x0 drivers/libdriver.a(ns16550.o)
+ .bss           0x40300638        0x0 drivers/libdriver.a(led.o)
+                0x40300638                __bss_end = .
+                0x40300638                _end = .
+LOAD cpu/start.o
+START GROUP
+LOAD board/libboard.a
+LOAD cpu/libcpu.a
+LOAD lib/libarm.a
+LOAD drivers/libdriver.a
+LOAD common/libcommon.a
+END GROUP
+LOAD libgcc
+OUTPUT(zygote elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x10
+ .ARM.attributes
+                0x00000000       0x10 cpu/start.o
+ .ARM.attributes
+                0x00000010       0x10 cpu/libcpu.a(cpu.o)
+ .ARM.attributes
+                0x00000020       0x10 cpu/libcpu.a(rom_hal.o)
+ .ARM.attributes
+                0x00000030       0x10 drivers/libdriver.a(ns16550.o)
+ .ARM.attributes
+                0x00000040       0x10 drivers/libdriver.a(led.o)
+
+.comment        0x00000000       0x30
+ .comment       0x00000000       0x30 cpu/libcpu.a(cpu.o)
+                                 0x31 (size before relaxing)
+ .comment       0x00000000       0x31 drivers/libdriver.a(ns16550.o)
+ .comment       0x00000000       0x31 drivers/libdriver.a(led.o)
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 cpu/libcpu.a(cpu.o)
+ .note.GNU-stack
+                0x00000000        0x0 drivers/libdriver.a(ns16550.o)
+ .note.GNU-stack
+                0x00000000        0x0 drivers/libdriver.a(led.o)
+
+.stab           0x00000000      0x258
+ .stab          0x00000000      0x1ec cpu/start.o
+ .stab          0x000001ec       0x6c cpu/libcpu.a(rom_hal.o)
+                                 0x78 (size before relaxing)
+
+.stabstr        0x00000000       0x47
+ .stabstr       0x00000000       0x47 cpu/start.o
